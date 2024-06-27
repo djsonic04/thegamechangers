@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gamechangers</title>
+    <style>
+        /* Existing CSS */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        @keyframes growIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #1d1f21;
+            color: #ccc;
+            animation: fadeIn 2s ease-in;
+        }
+        header {
+            background: #1f2833;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-in-out;
+        }
+        header img.logo {
+            height: 200px; /* Adjusted the height for a larger logo */
+            width: 400px;
+            vertical-align: middle;
+        }
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        header nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #ff5733;
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+        header nav a:hover::after {
+            width: 100%;
+            left: 0;
+            background: #ff5733;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1930&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            height: 400px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 1;
+            animation: growIn 1s ease-in-out;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px #000;
+            z-index: 1;
+            animation: fadeIn 2s ease-in;
+        }
+        .hero a {
+            background: #ff5733;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background 0.3s;
+            z-index: 1;
+            animation: growIn 2s ease-in-out;
+        }
+        .hero a:hover {
+            background: #c13e1b;
+        }
+        .container {
+            padding: 2rem;
+        }
+        .section {
+            margin-bottom: 3rem;
+            background: #2a2c2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            animation: fadeIn 3s ease-in;
+        }
+        .section h2 {
+            border-bottom: 2px solid #ff5733;
+            padding-bottom: 0.5rem;
+            animation: slideIn 1.5s ease-in-out;
+        }
+        .section p, .section h3 {
+            color: #ccc;
+            animation: fadeIn 2s ease-in;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+        }
+        .contact-form input, .contact-form textarea {
+            margin-bottom: 1rem;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #1d1f21;
+            color: #ccc;
+        }
+        .contact-form button {
+            background: #ff5733;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background: #c13e1b;
+        }
+        footer {
+            background: #1f2833;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        footer a {
+            color: #ff5733;
+            text-decoration: none;
+        }
+        /* Add this CSS for the job description */
+        .job-description {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #1f2833;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in;
+        }
+    </style>
+    <script>
+        function toggleJobDescription() {
+            var jobDescription = document.getElementById('job-description');
+            if (jobDescription.style.display === 'none' || jobDescription.style.display === '') {
+                jobDescription.style.display = 'block';
+            } else {
+                jobDescription.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <img src="Logo.png" alt="Logo" class="logo">
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#careers">Careers</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h2>Gaming is our Mission. Tested today for playing tomorrow</h2>
+    <p>Comprehensive Game Testing Services for All Platforms</p>
+    <a href="#contact">Get Started</a>
+</section>
+
+<div class="container">
+    <section class="section about" id="about">
+        <h2>About Us</h2>
+        <img src="testers.jpg" alt="Teamwork">
+        <p>Welcome to The Gamechangers! We help game developers deliver flawless gaming experiences through meticulous testing and quality assurance.</p>
+        <p>Our mission is to ensure that every game we test meets the highest standards of quality and performance.</p>
+        <p>To be the most trusted name in game testing, helping developers worldwide create unforgettable gaming experiences.</p>
+        <h3>Locations</h3>
+        <p>Our branches are distributed across all over the world - one branch on every continent<p>
+        <p>Headquater: 123 Gaming Lane, 1190 Vienna, Austria
+        <h3>Number of employees</h3>
+        <p>Our team consists of 4000 employees, distributed across all 4 branches across all continents. Meet us dedicated to providing top-notch game testing services.</p>
+        <h3>Our Values</h3>
+        <p>Quality, Integrity, Innovation, Customer Focus, Teamability, Fairness, Transparency, Home office, Parking Lot, no dress code (come as you are - to feel how you want!), Retirement fund.</p>
+        <h3>Vision</h3>
+        <p>"Gaming is our Mission. Tested today for playing tomorrow"</p>
+        <h3>Mission statement</h3>
+        <p>"Gaming (im)-possible"</p>
+    </section>
+
+    <section class="section services" id="services">
+        <h2>Our Services</h2>
+        <img src="service.jpg" alt="Services">
+        <h3>Functionality Testing</h3>
+        <p>Ensuring every aspect of your game works as intended.</p>
+        <h3>Compatibility Testing</h3>
+        <p>Verifying your game performs flawlessly on all devices and platforms.</p>
+        <h3>Performance Testing</h3>
+        <p>Assessing game performance under various conditions and loads.</p>
+        <h3>Localization Testing</h3>
+        <p>Making sure your game is ready for a global audience.</p>
+        <h3>Usability Testing</h3>
+        <p>Evaluating the user experience to ensure it's intuitive and engaging.</p>
+    </section>
+
+    <section class="section careers" id="careers">
+        <h2>Careers</h2>
+        <img src="career.jpg" alt="Careers">
+        <p>Join our dynamic team and help us shape the future of gaming!</p>
+        <p>We are currently hiring for the following positions:</p>
+        <ul>
+            <li><a href="javascript:void(0);" onclick="toggleJobDescription()">Game Testers (f/m/d)</a></li>
+        </ul>
+        <div id="job-description" class="job-description">
+            <h3>Job Description for Game Testers (f/m/d)</h3>
+            <p>As a Game Tester, you will be responsible for playing and testing games to identify bugs, glitches, and other issues. Your role will involve:</p>
+            <ul>
+                <li>Playing through game content to identify issues</li>
+                <li>Reporting and documenting bugs and errors</li>
+                <li>Collaborating with the development team to ensure issues are resolved</li>
+                <li>Verifying fixes and improvements</li>
+                <li>Providing feedback on game features and usability</li>
+            </ul>
+            <p>Requirements:</p>
+            <ul>
+                <li>Passion for gaming and a keen eye for detail</li>
+                <li>Strong analytical and problem-solving skills</li>
+                <li>Excellent communication skills</li>
+                <li>Ability to work independently and as part of a team</li>
+                <li>Fluency in German and English</li>
+            </ul>
+            <p>If you are excited about this opportunity, please apply through our contact form below or send your CV to careers@gamechangers.com.</p>
+        </div>
+    </section>
+
+    <section class="section blog" id="blog">
+        <h2>Blog</h2>
+        <img src="blog.jpg" alt="Blog">
+        <p>Stay updated with the latest trends and insights in the gaming industry.</p>
+    </section>
+
+    <section class="section contact" id="contact">
+        <h2>Contact Us</h2>
+        <img src="https://images.unsplash.com/photo-1521566652839-697aa4732ed2?q=80&w=2087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Contact Us">
+        <p>We'd love to hear from you! Reach out to us with any questions or inquiries.</p>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name">
+            <input type="email" name="email" placeholder="Your Email">
+            <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 The Gamechangers. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
