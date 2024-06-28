@@ -179,9 +179,8 @@
             color: #ff5733;
             text-decoration: none;
         }
-        /* Add this CSS for the job description */
+        /* Job description is now always visible */
         .job-description {
-            display: none;
             margin-top: 1rem;
             padding: 1rem;
             background: #1f2833;
@@ -190,16 +189,6 @@
             animation: fadeIn 2s ease-in;
         }
     </style>
-    <script>
-        function toggleJobDescription() {
-            var jobDescription = document.getElementById('job-description');
-            if (jobDescription.style.display === 'none' || jobDescription.style.display === '') {
-                jobDescription.style.display = 'block';
-            } else {
-                jobDescription.style.display = 'none';
-            }
-        }
-    </script>
 </head>
 <body>
 
@@ -262,7 +251,7 @@
         <p>Join our dynamic team and help us shape the future of gaming!</p>
         <p>We are currently hiring for the following positions:</p>
         <ul>
-            <li><a href="javascript:void(0);" onclick="toggleJobDescription()">Game Testers (f/m/d)</a></li>
+            <li>Game Testers (f/m/d)</li>
         </ul>
         <div id="job-description" class="job-description">
             <h3>Job Description for Game Testers (f/m/d)</h3>
